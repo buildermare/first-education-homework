@@ -1,11 +1,11 @@
 [package]
-name = "build"
-<<<<<<< HEAD
+name = "nft"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 # license = ""           # e.g., "MIT", "GPL", "Apache 2.0"
 # authors = ["..."]      # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
 
 [dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet", override = true }
 
 # For remote import, use the `{ git = "...", subdir = "...", rev = "..." }`.
 # Revision can be a branch, a tag, and a commit hash.
@@ -19,7 +19,7 @@ edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 # Override = { local = "../conflicting/version", override = true }
 
 [addresses]
-build = "0x0"
+nft = "0x0"
 
 # Named addresses will be accessible in Move as `@name`. They're also exported:
 # for example, `std = "0x1"` is exported by the Standard Library.
@@ -35,17 +35,3 @@ build = "0x0"
 # and `--dev` modes.
 # alice = "0xB0B"
 
-=======
-edition = "2024.beta"
-
-[dependencies]
-capability = { local = "../capability" }
-
-[addresses]
-build = "0x0"
-capability = "0x0"
-
-[dev-dependencies]
-
-[dev-addresses]
->>>>>>> 1a246a7 (tüm ödevler tamamlandı)

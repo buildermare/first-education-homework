@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 #[test_only]
 module transaction_context::transaction_context_tests;
@@ -16,3 +17,8 @@ fun test_transaction_context_fail() {
     abort ENotImplemented
 }
 */
+=======
+public fun fake_ctx_time(): u64 {
+    1712345678901 // örnek hardcoded milisaniye
+}
+>>>>>>> 1a246a7 (tüm ödevler tamamlandı)

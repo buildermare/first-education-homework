@@ -1,30 +1,24 @@
-/// Module: coin
-module test_coin::test_coin;
+module test_coin::test_coin {
+    // Only sui::coin is needed for the create_currency function.
+    // transfer and tx_context are brought in by default.
+    use sui::coin;
 
-use sui::coin::{Self, TreasuryCap};
+    /// The one-time witness for our coin.
+    public struct TEST_COIN has drop {}
 
-public struct TEST_COIN has drop {}
-
-fun init(witness: TEST_COIN, ctx: &mut TxContext) {
-    let (treasury, metadata) = coin::create_currency(
-        witness,
-        6,
-        b"BM",
-        b"BuilderMare Coin",
-        b"This is the BuilderMare Coin",
-        option::none(),
-        ctx,
-    );
-    transfer::public_freeze_object(metadata);
-    transfer::public_transfer(treasury, ctx.sender())
-}
-
-public fun mint(
-    treasury_cap: &mut TreasuryCap<TEST_COIN>,
-    amount: u64,
-    recipient: address,
-    ctx: &mut TxContext,
-) {
-    let coin = coin::mint(treasury_cap, amount, ctx);
-    transfer::public_transfer(coin, recipient)
+    /// In the module initializer, we create the currency and transfer the
+    /// TreasuryCap and CoinMetadata to the publisher.
+    fun init(witness: TEST_COIN, ctx: &mut TxContext) {
+        let (treasury, metadata) = coin::create_currency(
+            witness,
+            9,                   // decimals
+            b"WKC",              // symbol
+            b"Workshop Coin",    // name
+            b"A coin for completing challenges in the Sui workshop.", // description
+            option::none(),      // icon_url
+            ctx
+        );
+        transfer::public_transfer(treasury, ctx.sender());
+        transfer::public_transfer(metadata, ctx.sender());
+    }
 }

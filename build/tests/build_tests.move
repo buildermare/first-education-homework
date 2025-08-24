@@ -1,18 +1,17 @@
-/*
 #[test_only]
-module build::build_tests;
-// uncomment this line to import the module
-// use build::build;
+module build::build_tests {
+    // uncomment this line to import the module
+    use build::build;
 
-const ENotImplemented: u64 = 0;
+    const ENotImplemented: u64 = 0;
 
-#[test]
-fun test_build() {
-    // pass
+    #[test]
+    fun test_build() {
+        // pass
+    }
+
+    #[test, expected_failure(abort_code = ENotImplemented)]
+    fun test_build_fail() {
+        abort ENotImplemented
+    }
 }
-
-#[test, expected_failure(abort_code = ::build::build_tests::ENotImplemented)]
-fun test_build_fail() {
-    abort ENotImplemented
-}
-*/

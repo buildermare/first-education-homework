@@ -1,4 +1,3 @@
-/*
 #[test_only]
 module nft::nft_tests;
 // uncomment this line to import the module
@@ -15,4 +14,3 @@ fun test_nft() {
 fun test_nft_fail() {
     abort ENotImplemented
 }
-*/

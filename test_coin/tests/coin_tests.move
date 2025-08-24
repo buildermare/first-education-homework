@@ -1,4 +1,3 @@
-/*
 #[test_only]
 module coin::coin_tests;
 // uncomment this line to import the module
@@ -15,4 +14,3 @@ fun test_coin() {
 fun test_coin_fail() {
     abort ENotImplemented
 }
-*/

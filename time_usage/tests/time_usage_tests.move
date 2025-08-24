@@ -1,18 +1,17 @@
-/*
 #[test_only]
-module time_usage::time_usage_tests;
-// uncomment this line to import the module
-// use time_usage::time_usage;
+module time_usage::time_usage_tests {
+    use time_usage::time_usage;
+    use sui::tx_context::TxContext;
+    use sui::clock::{Self, Clock};
 
-const ENotImplemented: u64 = 0;
+    #[test]
+    fun test_time_usage_basic(ctx: &TxContext, clock: &Clock) {
+        // Test ortamı Clock ve TxContext sağlar. Varsayılan olarak
+        // epoch_start_ms <= now_ms olacağı için true bekleriz.
+        let ok = time_usage::compare(ctx, clock);
+        assert!(ok, 0);
+    }
 
-#[test]
-fun test_time_usage() {
-    // pass
+    // Not: Clock değerini manipüle etmek istersen test-only yardımcılar gerekir.
+    // Bazı ortamlarda sui::clock::increment_for_testing mevcut olabilir.
 }
-
-#[test, expected_failure(abort_code = ::time_usage::time_usage_tests::ENotImplemented)]
-fun test_time_usage_fail() {
-    abort ENotImplemented
-}
-*/

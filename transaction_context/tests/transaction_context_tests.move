@@ -1,18 +1,12 @@
-/*
 #[test_only]
-module transaction_context::transaction_context_tests;
-// uncomment this line to import the module
-// use transaction_context::transaction_context;
+module transaction_context::transaction_context_tests {
+    use transaction_context::transaction_context;
+    use sui::tx_context::TxContext;
 
-const ENotImplemented: u64 = 0;
-
-#[test]
-fun test_transaction_context() {
-    // pass
+    #[test]
+    fun test_epoch_start_ms(ctx: &TxContext) {
+        let ms = transaction_context::epoch_start_ms(ctx);
+        // Sadece “sıfırdan büyük” gibi basit bir doğrulama yapılabilir.
+        assert!(ms > 0, 0);
+    }
 }
-
-#[test, expected_failure(abort_code = ::transaction_context::transaction_context_tests::ENotImplemented)]
-fun test_transaction_context_fail() {
-    abort ENotImplemented
-}
-*/

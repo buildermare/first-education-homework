@@ -1,18 +1,29 @@
-/*
 #[test_only]
-module primitive_types::primitive_types_tests;
-// uncomment this line to import the module
-// use primitive_types::primitive_types;
+module primitive_types::primitive_types_tests {
+    use primitive_types::primitive_types;
+    use std::string;
 
-const ENotImplemented: u64 = 0;
+    #[test]
+    fun test_primitive_types() {
+        let (name, age, is_coder, lessons) = primitive_types::make_profile();
 
-#[test]
-fun test_primitive_types() {
-    // pass
+        // name en az 1 karakter
+        assert!(string::length(&name) > 0, 1);
+
+        // yaş kontrolü
+        assert!(age >= 0, 2);
+
+        // coder bayrağı
+        assert!(is_coder, 3);
+
+        // ders sayısı 3 olmalı
+        assert!(primitive_types::lessons_len(&lessons) == 3, 4);
+    }
+
+    const ENotImplemented: u64 = 0;
+
+    #[test, expected_failure(abort_code = ENotImplemented)]
+    fun test_primitive_types_fail() {
+        abort ENotImplemented
+    }
 }
-
-#[test, expected_failure(abort_code = ::primitive_types::primitive_types_tests::ENotImplemented)]
-fun test_primitive_types_fail() {
-    abort ENotImplemented
-}
-*/
